@@ -1,48 +1,57 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../../components/style_login.css";
 import "../../../../../node_modules/icheck-bootstrap/icheck-bootstrap.min.css";
-import { FaUserAlt,FaLock } from "react-icons/fa";
-import axios from "axios";
+import { FaUserAlt, FaLock } from "react-icons/fa";
+import { login } from "../../../redux/authSlice";
+import { Swal } from "sweetalert2";
+import { useHistory } from "react-router-dom";
 function Login() {
-
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { loading, current, error } = useSelector((state) => state.auth);
     useEffect(() => {
         document.title = "Login";
-        console.log(1);
-    },[]);
+    }, []);
+
+    // useEffect(() => {
+    //     console.log(41);
+    //     if (localStorage.getItem("access_token") != undefined) {
+    //         history.push("/home");
+    //     }
+    // }, [localStorage.getItem("access_token")]);
+
     const [loginInput, setLogin] = useState({
-        account: '',
-        password: '',
+        account: "",
+        password: "",
         remember: false,
     });
 
-    const handleCheckBox = (e)=> {
-        e.persist()
+    const handleCheckBox = (e) => {
+        e.persist();
         setLogin({
             ...loginInput,
-            remember: !loginInput.remember
-        })
-    }
-    const handleInput = (e)=> {
-        e.persist()
+            remember: !loginInput.remember,
+        });
+    };
+    const handleInput = (e) => {
+        e.persist();
         setLogin({
             ...loginInput,
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
         });
     };
 
-    const loginSubmit = (e)=> {
+    const loginSubmit = (e) => {
         e.preventDefault();
         const data = {
             account: loginInput.account,
             password: loginInput.password,
-            remember: loginInput.remember
-        }
+            remember: loginInput.remember,
+        };
+        dispatch(login(data))
 
-        axios.post('api/login',data).then(res)
-    }
-
-
-
+    };
 
     return (
         <div className="login-page">
@@ -64,13 +73,15 @@ function Login() {
                                     />
                                     <div className="input-group-append">
                                         <div className="input-group-text">
-                                           <FaUserAlt/>
+                                            <FaUserAlt />
                                         </div>
                                     </div>
                                     <div
                                         className="invalid-feedback d-block text-danger"
                                         id="accountError"
-                                    ></div>
+                                    >
+                                        {error.account}
+                                    </div>
                                 </div>
                             </div>
 
@@ -87,20 +98,27 @@ function Login() {
                                     />
                                     <div className="input-group-append">
                                         <div className="input-group-text">
-                                            <FaLock/>
+                                            <FaLock />
                                         </div>
                                     </div>
                                     <div
                                         className="invalid-feedback d-block text-danger"
                                         id="passwordError"
-                                    ></div>
+                                    >
+                                        {error.password}
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-8">
                                     <div className="icheck-primary">
-                                        <input type="checkbox" id="remember" value="true" onChange={handleCheckBox}/>
+                                        <input
+                                            type="checkbox"
+                                            id="remember"
+                                            value="true"
+                                            onChange={handleCheckBox}
+                                        />
                                         <label
                                             htmlFor="remember"
                                             className="font-weight-normal"

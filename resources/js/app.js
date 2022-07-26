@@ -14,17 +14,28 @@ require("./bootstrap");
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from "react-router-dom";
 import Login from "./pages/admin/login/Login.js";
-import "admin-lte/dist/css/adminlte.min.css";
-import "admin-lte/dist/js/adminlte.min.js";
+import store from "./redux/store.js";
+import Home from "./pages/admin/home.js";
 function App() {
+
     return (
+        <Provider store={store}>
             <Router>
                 <Switch>
                     <Route path="/login" component={Login} />
+                    <Route path="/home" component={Home}/>
+                    <Redirect to="login" />
                 </Switch>
             </Router>
+        </Provider>
     );
 }
 export default App;
