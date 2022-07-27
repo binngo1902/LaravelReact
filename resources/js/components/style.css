@@ -1,0 +1,153 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 0.9rem;
+}
+
+#formSearch .btn {
+    /* font-size: 12px; */
+}
+
+/* #formSearch .form-control {
+    font-size: 13px;
+} */
+
+.modal-footer > .btn {
+    min-width: 100px;
+}
+
+table.dataTable tbody td.select-checkbox,
+table.dataTable thead th.select-checkbox {
+    position: relative;
+}
+table.dataTable tbody td.select-checkbox:before,
+table.dataTable tbody td.select-checkbox:after,
+table.dataTable thead th.select-checkbox:before,
+table.dataTable thead th.select-checkbox:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+}
+table.dataTable tbody td.select-checkbox:before,
+table.dataTable thead th.select-checkbox:before {
+    content: " ";
+    margin-top: -6px;
+    margin-left: -6px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+table.dataTable tr.selected th.select-checkbox:before {
+    border: 1px solid black;
+}
+
+.swal2-popup {
+    font-family: inherit;
+}
+
+body.login-page.swal2-height-auto {
+    height: 100vh !important;
+}
+.swal2-styled.swal2-confirm {
+    background-color: #007bff;
+}
+
+#lengthPage {
+    margin-top: 10px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin-top: 4px;
+}
+
+body.login-page {
+    font-size: unset !important;
+}
+
+div.invalid-feedback {
+    display: block;
+    width: 100%;
+}
+
+.brand-link .brand-text {
+    font-size: x-large;
+    letter-spacing: 3px;
+}
+
+.nav-link-custom {
+    color: #e3342f;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex !important;
+}
+.nav-link-icon-custom {
+    font-size: 25px;
+}
+
+.sub-nav-link-icon-custom {
+    font-size: 20px;
+}
+.nav-link-custom span {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group select {
+    visibility: hidden;
+}
+
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active,
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus,
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover {
+    background-color: #17a2bb;
+    color: #ffffff;
+}
+
+.page-loader {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+.table th {
+    background-color: #0073b7;
+    border: 1px solid #fff;
+    white-space: nowrap;
+    color: #fff;
+    vertical-align: middle !important;
+}
+
+.px200 {
+    min-width: 200px;
+    max-width: 200px;
+    white-space: normal !important;
+}
+
+.fs-3x {
+    font-size: 3.3rem !important;
+}
+.fs-3 {
+    font-size: 1.1rem !important;
+}
+
+.text-gray-700 {
+    color: #5e6278 !important;
+}
+
+.text-gray-400 {
+    color: #b5b5c3 !important;
+}

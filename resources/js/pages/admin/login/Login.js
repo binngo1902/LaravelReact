@@ -14,12 +14,12 @@ function Login() {
         document.title = "Login";
     }, []);
 
-    // useEffect(() => {
-    //     console.log(41);
-    //     if (localStorage.getItem("access_token") != undefined) {
-    //         history.push("/home");
-    //     }
-    // }, [localStorage.getItem("access_token")]);
+    useEffect(() => {
+        const a = localStorage.getItem("info");
+        if (JSON.parse(a)?.logged_in === 1) {
+            history.push("/home");
+        }
+    }, [localStorage.getItem("info")]);
 
     const [loginInput, setLogin] = useState({
         account: "",
@@ -49,8 +49,7 @@ function Login() {
             password: loginInput.password,
             remember: loginInput.remember,
         };
-        dispatch(login(data))
-
+        dispatch(login(data));
     };
 
     return (

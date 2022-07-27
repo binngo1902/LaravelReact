@@ -1,45 +1,37 @@
-
 import React, { useState, useEffect } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axiosClient from "../../api/axiosClient";
-function Home() {
-    useEffect(()=>{
-        const a = axiosClient.get('/api/user');
-    })
-    return (
-        <div className="login-page">
-            <div className="login-box">
-                <div className="card">
-                    <div className="login-logo">
-                        <b>Zoo</b>System
-                    </div>
-                    <div className="card-body">
-                        <form>
-                            <div className="row">
-                                <div className="input-group mb-3">
-                                    <input
-                                        id="account"
-                                        className="form-control"
-                                        placeholder="ユーザー名"
+import "../../components/style.css";
 
-                                    />
-                                    <div className="input-group-append">
-                                        <div className="input-group-text">
-                                            <FaUserAlt />
-                                        </div>
-                                    </div>
-                                    <div
-                                        className="invalid-feedback d-block text-danger"
-                                        id="accountError"
-                                    ></div>
+import FooterComponent from "../../components/layouts/FooterComponent";
+import HeaderComponent from "../../components/layouts/HeaderComponent";
+import SidebarComponent from "../../components/layouts/SidebarComponent";
+function Home(props) {
+    useEffect(() => {
+        const a = axiosClient.get("/api/user");
+    });
+    let body = $("body");
+    body.addClass("hold-transition sidebar-mini");
+
+    return (
+        <React.Fragment>
+            <div className="wrapper">
+                <HeaderComponent />
+                <SidebarComponent />
+                <div className="content-wrapper">
+                    <section className="content-header">
+                        <div className="container-fluid">
+                            <div className="row mb-2">
+                                <div className="col-sm-6">
+                                    <h1>ZooSystemへよこそう</h1>
                                 </div>
                             </div>
-
-                        </form>
-                    </div>
+                        </div>
+                    </section>
                 </div>
+                <FooterComponent />
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

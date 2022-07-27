@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e2e3e5;
+    padding-top: 50px;
+}
+
+.swal2-popup {
+    font-family: inherit;
+}
+
+body.login-page.swal2-height-auto {
+    height: 100vh !important;
+}
+.swal2-styled.swal2-confirm {
+    background-color: #007bff;
+}
+
+div.invalid-feedback {
+    display: block;
+    width: 100%;
+}
+
+.page-loader {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}

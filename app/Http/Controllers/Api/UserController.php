@@ -28,7 +28,7 @@ class UserController extends Controller
                 return response()->json([
                     'status_code' => 500,
                     'message' => 'Unauthorized'
-                ],400);
+                ], 400);
             }
 
             Auth::login($user);
@@ -37,12 +37,13 @@ class UserController extends Controller
                 'account' => $user->account,
                 'email' => $user->email,
             ];
-            $time = 120;
+            $time = 2;
+
             if ($request->remember) {
+                $tokenResult = $user->createToken('API Token', ['remember'])->plainTextToken;
                 $time = 0;
             }
-
-            $token = cookie('jwt',$tokenResult,$time);
+            $token = cookie('jwt', $tokenResult, $time);
             return response()->json([
                 'logged_in' => 1,
                 'info' => $info,
@@ -52,7 +53,7 @@ class UserController extends Controller
                 'status_code' => 500,
                 'message' => 'Error in Login',
                 'error' => $error,
-            ],500);
+            ], 500);
         }
     }
 }
