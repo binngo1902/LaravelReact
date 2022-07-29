@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,5 +57,23 @@ class UserController extends Controller
                 'error' => $error,
             ], 500);
         }
+    }
+    public function logout()
+    {
+        try {
+            $cookie = \Cookie::forget('jwt');
+            auth()->user()->tokens()->delete();
+            return response()->json('User logged out successfully')->withCookie($cookie);
+        } catch (\Exception $exception) {
+            return response()->json('Sorry, the user cannot be logged out', 500);
+        }
+    }
+
+    public function listUsers(Request $request)
+    {
+        $a = User::where('id', '!=', 0)
+        ->orderBy($request->column_sort ?? 'id',$request->type_sort ?? 'asc')
+        ->paginate( $request->per_page ?? 10);
+        return UserResource::collection($a);
     }
 }

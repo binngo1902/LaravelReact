@@ -1,12 +1,18 @@
 import React from "react";
 import { FaAngleLeft, FaAngleRight, FaFolder } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
 import logoImage from "../../../images/gheader_logo_race_01.gif";
 
 export default function SidebarComponent(props) {
+    const handleClick = (path, e) => {
+        if (window.location.pathname === path) {
+            e.preventDefault();
+        }
+    };
     return (
         <React.Fragment>
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
-                <a href="{{ route('home') }}" className="brand-link">
+                <Link to="home" className="brand-link">
                     <img
                         src={logoImage}
                         alt="Logo"
@@ -16,7 +22,7 @@ export default function SidebarComponent(props) {
                     <span className="brand-text font-weight-bold">
                         ZOOSYSTEM
                     </span>
-                </a>
+                </Link>
                 <div className="sidebar sidebar-dark-info">
                     <nav className="mt-2">
                         <ul
@@ -35,24 +41,34 @@ export default function SidebarComponent(props) {
                                 </a>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
-                                        <a
-                                            href="{{ url('authority_user') }}"
+                                        <NavLink
+                                            exact
+                                            key={"navlink-test"}
+                                            to="/test"
                                             className="nav-link"
+                                            onClick={(e) =>
+                                                handleClick("/admin/orders", e)
+                                            }
                                         >
                                             <FaAngleRight className="nav-icon" />
                                             <p>アカウント管理</p>
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
-                                        <a
-                                            href="{{ url('zoom_account_management') }}"
+                                        <NavLink
+                                            exact
+                                            key={"navlink-test2"}
+                                            to="/home"
                                             className="nav-link"
+                                            onClick={(e) =>
+                                                handleClick("/admin/orders", e)
+                                            }
                                         >
                                             <FaAngleRight className="nav-icon" />
-                                            <p>Zoomアカウント管理</p>
-                                        </a>
+                                            <p>アカウント管理</p>
+                                        </NavLink>
                                     </li>
                                 </ul>
                             </li>

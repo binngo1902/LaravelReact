@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
@@ -26,7 +27,6 @@ axiosClient.interceptors.response.use(function (response){
         localStorage.removeItem('last_login');
         localStorage.removeItem('notify');
         localStorage.removeItem('info');
-        window.location = 'login';
     }
     return Promise.reject(error);
 });

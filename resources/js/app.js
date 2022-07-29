@@ -24,15 +24,12 @@ import {
 import Login from "./pages/admin/login/Login.js";
 import store from "./redux/store.js";
 import Home from "./pages/admin/home.js";
+import routes from "./routes";
 function App() {
     return (
         <Provider store={store}>
             <Router>
-                <Switch>
-                    <Route path="/login" component={Login} />
-                    <Route path="/home" component={Home} />
-                    <Redirect to="login" />
-                </Switch>
+               {routes}
             </Router>
         </Provider>
     );

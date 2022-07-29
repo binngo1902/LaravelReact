@@ -15,11 +15,11 @@ function Login() {
     }, []);
 
     useEffect(() => {
-        const a = localStorage.getItem("info");
-        if (JSON.parse(a)?.logged_in === 1) {
+        const a = localStorage.getItem("logged_in");
+        if (a == 1) {
             history.push("/home");
         }
-    }, [localStorage.getItem("info")]);
+    }, [localStorage.getItem("logged_in")]);
 
     const [loginInput, setLogin] = useState({
         account: "",

@@ -1,15 +1,35 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
     FaBars,
     FaChalkboardTeacher,
     FaPowerOff,
     FaUserCircle,
 } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
+import axiosClient from "../../api/axiosClient";
 
 export default function HeaderComponent(props) {
+    const history = useHistory();
     const handleClick = (e) => {
         e.preventDefault();
     };
+    const handleClickLogout = (e) => {
+        e.preventDefault();
+        axiosClient
+            .post("api/logout")
+            .then((res) => {
+                localStorage.removeItem("logged_in");
+                localStorage.removeItem("config");
+                history.push("/");
+            })
+            .catch((error) => {
+                if (error.status === 401) {
+                    history.push("/");
+                }
+            });
+    };
+
     return (
         <React.Fragment>
             <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -25,7 +45,7 @@ export default function HeaderComponent(props) {
                         </a>
                     </li>
                     <li className="nav-item d-none d-sm-inline-block">
-                        <a className="nav-link">@yield('page_name')</a>
+                        <a className="nav-link">{document.title}</a>
                     </li>
                 </ul>
 
@@ -52,7 +72,8 @@ export default function HeaderComponent(props) {
                                 <span>緊急MTG発行</span>
                             </a>
                             <a
-                                href="{{ route('logout') }}"
+                                href="#"
+                                onClick={handleClickLogout}
                                 className="dropdown-item"
                             >
                                 <FaPowerOff className="sub-nav-link-icon-custom mr-1" />

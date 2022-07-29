@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { extendWith } from "lodash";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosClient from "../api/axiosClient";
@@ -10,6 +11,7 @@ export const login = createAsyncThunk(
     async (params, thunkAPI) => {
         try {
             const response = await axiosClient.post(API_LOGIN, params);
+
             return response;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -41,7 +43,9 @@ const authSlice = createSlice({
         },
         [login.fulfilled]: (state, action) => {
             state.current = action.payload;
-            localStorage.setItem("info", JSON.stringify(action.payload));
+            localStorage.setItem("info", JSON.stringify(action.payload.info));
+            localStorage.setItem("logged_in", JSON.stringify(action.payload.logged_in));
+
         },
     },
 });

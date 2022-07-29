@@ -151,3 +151,64 @@ div.invalid-feedback {
 .text-gray-400 {
     color: #b5b5c3 !important;
 }
+
+.datatable-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.datatable-bottom .pagination {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+}
+
+.datatable-bottom .length {
+    align-items: center;
+    display: flex;
+}
+
+.datatable-bottom .length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.datatable-bottom .length label select {
+    width: auto;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.datatable th.sorting {
+    cursor: pointer;
+    position: relative;
+}
+
+.datatable th.sorting:before, .datatable th.sorting:after {
+    position: absolute;
+    bottom: 0.9em;
+    display: block;
+    opacity: 0.3;
+}
+
+.datatable th.sorting:before {
+    right: 1em;
+    content: "\2191";
+}
+
+.datatable th.sorting:after {
+    right: 0.5em;
+    content: "\2193";
+}
+
+.datatable th.sorting.asc:before {
+    opacity: 1;
+}
+
+.datatable th.sorting.desc:after {
+    opacity: 1;
+}
